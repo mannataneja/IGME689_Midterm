@@ -1137,7 +1137,7 @@ GameObject:
   - component: {fileID: 731653966}
   - component: {fileID: 731653967}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Feature Layer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1155,7 +1155,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1415554317}
   m_Father: {fileID: 901063924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &731653967
@@ -1170,7 +1171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b873a4be6ab5d24ab6842ef340fa8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoadSpawner
-  featurePrefab: {fileID: 0}
+  featurePrefab: {fileID: 9066911396237995495, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
   FeatureItems: []
   WebLink:
     Link: https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/Bike_Trails/FeatureServer/0/query?f=geojson&where=LOCAL_NAME=%27Ashuwillticook%20Rail%20Trail%27&outfields=*
@@ -1537,9 +1538,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 731653966}
-  - {fileID: 1415554317}
   - {fileID: 1823688467}
   - {fileID: 20655263}
+  - {fileID: 1119178074}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1068001868
@@ -1696,6 +1697,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116582329}
   m_CullTransparentMesh: 1
+--- !u!4 &1119178074 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8125121642266012481, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+  m_PrefabInstance: {fileID: 591603951649077958}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1123794566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2121,7 +2127,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 901063924}
+  m_Father: {fileID: 731653966}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1415554318
 MonoBehaviour:
@@ -3007,6 +3013,87 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &591603951649077958
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 901063924}
+    m_Modifications:
+    - target: {fileID: 6957309362925159970, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1364576.9154109238
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957309362925159970, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4296308.064625946
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957309362925159970, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4498435.794257386
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957309362925159970, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalRotation.value.x
+      value: -0.39746115
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957309362925159970, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalRotation.value.y
+      value: -0.13436365
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957309362925159970, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalRotation.value.z
+      value: -0.058957435
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125121642266012481, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0003745105
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125121642266012481, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 250.00989
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125121642266012481, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0002824893
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125121642266012481, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125121642266012481, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000085515275
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125121642266012481, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0000000030426832
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125121642266012481, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0000000030426819
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125121642266012481, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125121642266012481, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125121642266012481, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066911396237995495, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
+      propertyPath: m_Name
+      value: Cylinder
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ff05229f0f194a64a9708dcffe43b50b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

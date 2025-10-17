@@ -135,6 +135,11 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
 
                 // Add converted position to the splines container
                 splineContainer.Splines[0].Add(bezierKnot);
+
+
+                GameObject newPoint = Instantiate(featurePrefab, transform);
+                newPoint.GetComponent<ArcGISLocationComponent>().Position = position;
+                newPoint.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
             }
         }
 /*        wallBuilder.SetActive(true);
