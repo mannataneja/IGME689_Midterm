@@ -48,7 +48,7 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
 
     private List<FeatureQueryData> Features = new List<FeatureQueryData>();
     private FeatureData featureInfo;
-    [SerializeField] private GameObject featurePrefab;
+    [SerializeField] private GameObject[] featurePrefabs;
     private JToken[] jFeatures;
     private float spawnHeight = 0;
 
@@ -136,8 +136,8 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
                 // Add converted position to the splines container
                 splineContainer.Splines[0].Add(bezierKnot);
 
-
-                GameObject newPoint = Instantiate(featurePrefab, transform);
+                int random = UnityEngine.Random.Range(0, featurePrefabs.Length);
+                GameObject newPoint = Instantiate(featurePrefabs[random], transform);
                 newPoint.GetComponent<ArcGISLocationComponent>().Position = position;
                 newPoint.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
             }
