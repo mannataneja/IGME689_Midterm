@@ -105,10 +105,10 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
         // Deserialize the JSON response from the query.
         var jObject = JObject.Parse(response);
         jFeatures = jObject.SelectToken("features").ToArray();
-        CreateFeatures();
+        //CreateFeatures();
     }
 
-    private void CreateFeatures()
+    /*private void CreateFeatures()
     {
         foreach (var feature in jFeatures)
         {
@@ -121,8 +121,8 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
                 coordinates.ToArray();
                 currentFeature.Geometry.Latitude = Convert.ToDouble(coordinate[1]);
                 currentFeature.Geometry.Longitude = Convert.ToDouble(coordinate[0]);
-/*                Debug.Log("Longitude: " + currentFeature.Geometry.Longitude);
-                Debug.Log("Latitude: " + currentFeature.Geometry.Latitude);*/
+*//*                Debug.Log("Longitude: " + currentFeature.Geometry.Longitude);
+                Debug.Log("Latitude: " + currentFeature.Geometry.Latitude);*//*
 
                 // Create new ArcGIS Point and pass the Feature Lat and Long to it
                 var position = new ArcGISPoint(currentFeature.Geometry.Longitude, currentFeature.Geometry.Latitude, spawnHeight, new ArcGISSpatialReference(4326));
@@ -142,8 +142,8 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
                 newPoint.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
             }
         }
-/*        wallBuilder.SetActive(true);
+*//*        wallBuilder.SetActive(true);
         wall = wallBuilder.GetComponent<Wall>();
-        wall.Build();*/
-    }
+        wall.Build();*//*
+    }*/
 }
