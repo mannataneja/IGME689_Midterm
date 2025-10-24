@@ -101,7 +101,7 @@ public class WeatherController : MonoBehaviour
             SetWeatherState(Random.value < 0.5f ? WeatherState.Clear : WeatherState.Sunny);
     }
 
-    private void SetWeatherState(WeatherState state)
+    public void SetWeatherState(WeatherState state)
     {
         this.state = state;
         if (state == WeatherState.Clear || state == WeatherState.Sunny)

@@ -98,7 +98,7 @@ MonoBehaviour:
     Heading: 0
     Pitch: 0
     Roll: 0
-  surfacePlacementMode: 0
+  surfacePlacementMode: 1
   surfacePlacementOffset: 0
   version: 1
   isInitialized: 0
