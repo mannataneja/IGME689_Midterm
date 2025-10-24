@@ -905,7 +905,7 @@ GameObject:
   - component: {fileID: 8609107756472827085}
   m_Layer: 0
   m_Name: Chicken_001
-  m_TagString: Untagged
+  m_TagString: animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1013,12 +1013,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eac3d72261048647bf998850c7a4d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrailWanderer
+  animalName: chicken
   playerSnapCam: {fileID: 6595612978507878213, guid: 7a2198cb285fd5d4bb6d7cc574c60063, type: 3}
-  visible: 0
+  isVisible: 0
   trailPoints: []
   moveSpeed: 2.5
   turnSpeed: 5
-  waitTimeAtPoint: 5
+  waitTimeAtPoint: 10
   loopPath: 1
   animator: {fileID: 0}
 --- !u!114 &8609107756472827085

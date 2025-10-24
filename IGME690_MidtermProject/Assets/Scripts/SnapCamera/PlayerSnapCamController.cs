@@ -8,6 +8,8 @@ using Unity.VisualScripting;
 
 public class PlayerSnapCamController : MonoBehaviour
 {
+    [SerializeField] RealtimeSunController sunController;
+    [SerializeField] public List<GameObject> animals;
     [SerializeField] SnapshotCamera snapCam;
     [SerializeField] float cooldownTime = 3;
     [SerializeField] Slider cooldownSlider;
@@ -16,6 +18,7 @@ public class PlayerSnapCamController : MonoBehaviour
     [SerializeField] Canvas pauseMenu;
     float lastClick;
     float nextClick;
+    float distanceScore;
 
     int maxSnaps = 10;
     int currentSnap = 0;
@@ -43,6 +46,7 @@ public class PlayerSnapCamController : MonoBehaviour
             snapCounter.text = "Photos Taken : " + currentSnap + "/" + maxSnaps;
 
             snapCam.CallTakeSnapshot(currentSnap);
+            Score();
         }
 
         ///<summary>
@@ -88,6 +92,51 @@ public class PlayerSnapCamController : MonoBehaviour
                 ResumGame();
             }
         }
+    }
+    public void Score()
+    {
+        foreach(GameObject animal in animals)
+        {
+            TrailWanderer trailWanderer = animal.GetComponent<TrailWanderer>();
+            if (trailWanderer.isVisible)
+            {
+                if(Vector3.Distance(trailWanderer.transform.position, transform.position) < 100)
+                {
+                    if (trailWanderer.animalName == "chicken")
+                    {
+                        distanceScore = Vector3.Distance(trailWanderer.transform.position, transform.position) / 10;
+                        if (distanceScore < 0) distanceScore = 0;
+                        snapCam.AddScore(20 - (int)distanceScore + sunController.currentTime.Hour);
+                    }
+                    if (trailWanderer.animalName == "deer")
+                    {
+                        distanceScore = Vector3.Distance(trailWanderer.transform.position, transform.position) / 10;
+                        if (distanceScore < 0) distanceScore = 0;
+                        snapCam.AddScore(40 - (int)distanceScore + sunController.currentTime.Hour);
+                    }
+                    if (trailWanderer.animalName == "dog")
+                    {
+                        distanceScore = Vector3.Distance(trailWanderer.transform.position, transform.position) / 10;
+                        if (distanceScore < 0) distanceScore = 0;
+                        snapCam.AddScore(10 - (int)distanceScore + sunController.currentTime.Hour);
+                    }
+                    if (trailWanderer.animalName == "horse")
+                    {
+                        distanceScore = Vector3.Distance(trailWanderer.transform.position, transform.position) / 10;
+                        if (distanceScore < 0) distanceScore = 0;
+                        snapCam.AddScore(20 - (int)distanceScore + sunController.currentTime.Hour);
+                    }
+                    if (trailWanderer.animalName == "cat")
+                    {
+                        distanceScore = Vector3.Distance(trailWanderer.transform.position, transform.position) / 10;
+                        if (distanceScore < 0) distanceScore = 0;
+                        snapCam.AddScore(60 - (int)distanceScore + sunController.currentTime.Hour);
+                    }
+                }
+
+            }
+        }
+
     }
     public void DeleteSnap(int index)
     {

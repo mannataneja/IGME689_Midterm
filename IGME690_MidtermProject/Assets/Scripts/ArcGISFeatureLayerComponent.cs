@@ -142,26 +142,34 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
                 // Add converted position to the splines container
                 splineContainer.Splines[0].Add(bezierKnot);
 
-                if (c % 7 == 0)
+                Debug.Log(c);
+                if ((c + 3) % 10 == 0)
                 {
+                    Debug.Log("waypoint 0");
                     waypoint0 = Instantiate(waypointPrefab, transform);
                     waypoint0.GetComponent<ArcGISLocationComponent>().Position = position;
                     waypoint0.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
                 }
-                if (c % 8 == 0)
+                if ((c + 2) % 10 == 0)
                 {
+                    Debug.Log("waypoint 1");
+
                     waypoint1 = Instantiate(waypointPrefab, transform);
                     waypoint1.GetComponent<ArcGISLocationComponent>().Position = position;
                     waypoint1.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
                 }
-                if (c % 9 == 0)
+                if ((c + 1) % 10 == 0)
                 {
+                    Debug.Log("waypoint 2");
+
                     waypoint2 = Instantiate(waypointPrefab, transform);
                     waypoint2.GetComponent<ArcGISLocationComponent>().Position = position;
                     waypoint2.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
                 }
                 if(c % 10 == 0)
                 {
+                    Debug.Log("Animals");
+
                     int random = UnityEngine.Random.Range(0, featurePrefabs.Length);
                     GameObject newPoint = Instantiate(featurePrefabs[random], transform);
                     newPoint.GetComponent<ArcGISLocationComponent>().Position = position;
@@ -171,6 +179,7 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
                     newPoint.GetComponent<TrailWanderer>().trailPoints.Add(waypoint2.transform);
 
                 }
+
 
             }
         }

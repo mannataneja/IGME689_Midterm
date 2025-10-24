@@ -8,6 +8,8 @@ using Esri.GameEngine.Geometry;
 [RequireComponent(typeof(CharacterController))]
 public class TrailWanderer : MonoBehaviour
 {
+    public string animalName;
+
     public Camera playerSnapCam;
     public bool isVisible;
     [Header("Waypoints")]
@@ -34,10 +36,22 @@ public class TrailWanderer : MonoBehaviour
     }
     private IEnumerator StartingUp()
     {
+        GameObject.FindWithTag("Player").GetComponent<PlayerSnapCamController>().animals.Add(gameObject);
         isWaiting = true;
         yield return new WaitForSeconds(1);
         isWaiting = false;
         GetComponent<ArcGISLocationComponent>().enabled = false;
+        float randomOffsetX = UnityEngine.Random.Range(10, 15);
+        float randomOffsetZ = UnityEngine.Random.Range(10, 15);
+
+        // Randomly flip sign (so offset can go in any direction)
+        if (UnityEngine.Random.value > 0.5f) randomOffsetX *= -1;
+        if (UnityEngine.Random.value > 0.5f) randomOffsetZ *= -1;
+
+        // Create the offset vector
+        Vector3 offset = new Vector3(randomOffsetX, 0f, randomOffsetZ);
+
+        transform.position += offset;
     }
 
     private void Update()
@@ -71,7 +85,6 @@ public class TrailWanderer : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
         }
-        transform.position = new Vector3(transform.position.x, -2.5f, transform.position.z);
     }
 
     private IEnumerator WaitAtWaypoint()
