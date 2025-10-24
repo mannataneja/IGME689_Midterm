@@ -10,6 +10,7 @@ public class PlayerSnapCamController : MonoBehaviour
 {
     [SerializeField] FirstPersonController FPSController;
     [SerializeField] RealtimeSunController sunController;
+    [SerializeField] WeatherController weatherController;
     [SerializeField] public List<GameObject> animals;
     [SerializeField] SnapshotCamera snapCam;
     [SerializeField] float cooldownTime = 3;
@@ -21,6 +22,7 @@ public class PlayerSnapCamController : MonoBehaviour
     float nextClick;
     int movementScore;
     int distanceScore;
+    int weatherScore;
 
     int maxSnaps = 10;
     int currentSnap = 0;
@@ -107,6 +109,7 @@ public class PlayerSnapCamController : MonoBehaviour
                     if (FPSController.currentMoveSpeed > 0 || FPSController.currentRotationSpeed > 0) movementScore = -5;
                     distanceScore = (int)(-1 * (Vector3.Distance(trailWanderer.transform.position, transform.position) / 10));
                     if (distanceScore < 0) distanceScore = 0;
+                    if (weatherController.CurrentState == WeatherController.WeatherState.Rain) weatherScore = 5; else weatherScore = 0;
 
                     snapCam.AddScore(trailWanderer.animalScore + movementScore + distanceScore + (sunController.currentTime.Hour * trailWanderer.timeScoreMult));
                 }

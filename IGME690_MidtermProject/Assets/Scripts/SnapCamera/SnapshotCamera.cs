@@ -98,14 +98,6 @@ public class SnapshotCamera : MonoBehaviour
             snapshots.Add(newSnap);
 
 
-            ///<summary>
-            ///Weather needs to be checked only (not for every cat) once to add to score
-            /// </summary>
-/*            if(weather == WeatherController.WeatherState.Rain)
-            {
-                AddScore(1);
-            }
-            AddScore((int)-Mathf.Ceil(zoom.currentZoom * 2)); //Deduct score for zooming*/
 
 
             gallery[currentSnap - 1].GetComponentInChildren<TMP_Text>().text = "Score: " + scores[currentSnap - 1].ToString();
@@ -126,49 +118,6 @@ public class SnapshotCamera : MonoBehaviour
 
         // Get all of the AI agents and filter them based on whether they're visible in the camera
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(snapCam);
-/*        AIMovement[] cats = FindObjectsByType<AIMovement>(FindObjectsSortMode.None)
-            .Where(c => GeometryUtility.TestPlanesAABB(planes, c.GetComponent<Collider>().bounds)).ToArray();
-
-        foreach (AIMovement cat in cats)
-        {
-            SnapshotSubject subject = new SnapshotSubject();
-            subject.SubjectType = cat.tag;
-            subject.SubjectDistance = Vector3.Distance(transform.position, cat.transform.position);
-            subject.SubjectAction = cat.GetCurrentAction();
-            subject.IsSubjectObscured = false;
-            subjects.Add(subject);
-
-            /// <summary>
-            /// check each attribute in subject and add score for each cat
-            /// Each cat should have tag on the gameobject where AIMovement.cs is attached
-            /// </summary>
-            // If the subject is too far away, don't count it when scoring.
-            if (subject.SubjectDistance > maxSubjectDistance)
-                continue;
-
-            // Otherwise, add a point because the player got a cat in the picture.
-            AddScore(1);
-            
-            // Further score the subject based on its species, its distance from the camera,
-            // and if it's performing any special actions.
-            if(subject.SubjectType == "Monarch")
-                AddScore(1); 
-            if(subject.SubjectDistance < maxSubjectDistance / 2f)
-                AddScore(1);
-            if (subject.SubjectDistance < maxSubjectDistance / 4f)
-                AddScore(2);
-            // I arbutrarily decided that a butterkitten playing is better than a butterkitten
-            // sunbathing, if you disagree then feel free to change it -Leo
-            switch (subject.SubjectAction)
-            {
-                case "playing":
-                    AddScore(playingScore);
-                    break;
-                case "sunbathing":
-                    AddScore(sunbathingScore);
-                    break;
-            }
-        }*/
 
         // Return the list of subjects
         return subjects;

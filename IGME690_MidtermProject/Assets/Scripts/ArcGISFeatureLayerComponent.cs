@@ -1,4 +1,4 @@
-// Copyright 2025 Esri.
+﻿// Copyright 2025 Esri.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at: http://www.apache.org/licenses/LICENSE-2.0
@@ -145,17 +145,17 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
                 // Add converted position to the splines container
                 splineContainer.Splines[0].Add(bezierKnot);
 
-                Debug.Log(c);
+               // Debug.Log(c);
                 if ((c + 3) % 10 == 0)
                 {
-                    Debug.Log("waypoint 0");
+                   // Debug.Log("waypoint 0");
                     waypoint0 = Instantiate(waypointPrefab, transform);
                     waypoint0.GetComponent<ArcGISLocationComponent>().Position = position;
                     waypoint0.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
                 }
                 if ((c + 2) % 10 == 0)
                 {
-                    Debug.Log("waypoint 1");
+                   // Debug.Log("waypoint 1");
 
                     waypoint1 = Instantiate(waypointPrefab, transform);
                     waypoint1.GetComponent<ArcGISLocationComponent>().Position = position;
@@ -163,7 +163,7 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
                 }
                 if ((c + 1) % 10 == 0)
                 {
-                    Debug.Log("waypoint 2");
+                   // Debug.Log("waypoint 2");
 
                     waypoint2 = Instantiate(waypointPrefab, transform);
                     waypoint2.GetComponent<ArcGISLocationComponent>().Position = position;
@@ -171,7 +171,7 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
                 }
                 if(c % 10 == 0)
                 {
-                    Debug.Log("Animals");
+                    //Debug.Log("Animals");
                     if(roll < 10)
                     {
                         index = 0;
