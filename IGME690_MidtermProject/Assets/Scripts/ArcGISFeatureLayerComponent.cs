@@ -48,8 +48,9 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
 
     private List<FeatureQueryData> Features = new List<FeatureQueryData>();
     private FeatureData featureInfo;
-    [SerializeField] private GameObject[] featurePrefabs;
+    [SerializeField] private GameObject[] animalPrefabs;
     [SerializeField] private GameObject waypointPrefab;
+    [SerializeField] private GameObject[] treePrefabs;
     private GameObject waypoint0;
     private GameObject waypoint1;
     private GameObject waypoint2;
@@ -170,16 +171,27 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
                 {
                     Debug.Log("Animals");
 
-                    int random = UnityEngine.Random.Range(0, featurePrefabs.Length);
-                    GameObject newPoint = Instantiate(featurePrefabs[random], transform);
-                    newPoint.GetComponent<ArcGISLocationComponent>().Position = position;
-                    newPoint.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
-                    newPoint.GetComponent<TrailWanderer>().trailPoints.Add(waypoint0.transform);
-                    newPoint.GetComponent<TrailWanderer>().trailPoints.Add(waypoint1.transform);
-                    newPoint.GetComponent<TrailWanderer>().trailPoints.Add(waypoint2.transform);
+                    int random = UnityEngine.Random.Range(0, animalPrefabs.Length);
+                    GameObject animal = Instantiate(animalPrefabs[random], transform);
+                    animal.GetComponent<ArcGISLocationComponent>().Position = position;
+                    animal.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
+                    animal.GetComponent<TrailWanderer>().trailPoints.Add(waypoint0.transform);
+                    animal.GetComponent<TrailWanderer>().trailPoints.Add(waypoint1.transform);
+                    animal.GetComponent<TrailWanderer>().trailPoints.Add(waypoint2.transform);
 
                 }
-
+                if(c % 6 == 0)
+                {
+                    GameObject tree = Instantiate(treePrefabs[0], transform);
+                    tree.GetComponent<ArcGISLocationComponent>().Position = position;
+                    tree.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
+                }
+                if (c % 7 == 0)
+                {
+                    GameObject tree = Instantiate(treePrefabs[1], transform);
+                    tree.GetComponent<ArcGISLocationComponent>().Position = position;
+                    tree.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
+                }
 
             }
         }
