@@ -669,7 +669,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrailWanderer
   animalName: cat
+  animalScore: 30
+  timeScoreMult: 0
   playerSnapCam: {fileID: 6595612978507878213, guid: 7a2198cb285fd5d4bb6d7cc574c60063, type: 3}
+  sunController: {fileID: 0}
   isVisible: 0
   trailPoints: []
   moveSpeed: 2.5

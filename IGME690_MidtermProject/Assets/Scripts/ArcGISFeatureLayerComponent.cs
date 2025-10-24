@@ -116,6 +116,8 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
     private void CreateFeatures()
     {
         int c = 0;
+        int roll = UnityEngine.Random.Range(0, 100);
+        int index = 0;
         foreach (var feature in jFeatures)
         {
             // Get coordinates in the Feature Service
@@ -170,9 +172,27 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
                 if(c % 10 == 0)
                 {
                     Debug.Log("Animals");
-
-                    int random = UnityEngine.Random.Range(0, animalPrefabs.Length);
-                    GameObject animal = Instantiate(animalPrefabs[random], transform);
+                    if(roll < 10)
+                    {
+                        index = 0;
+                    }
+                    else if(roll < 25)
+                    {
+                        index = 1;
+                    }
+                    else if(roll < 45)
+                    {
+                        index = 2;
+                    }
+                    else if(roll < 70)
+                    {
+                        index = 3;
+                    }
+                    else
+                    {
+                        index = 4;
+                    }
+                    GameObject animal = Instantiate(animalPrefabs[index], transform);
                     animal.GetComponent<ArcGISLocationComponent>().Position = position;
                     animal.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
                     animal.GetComponent<TrailWanderer>().trailPoints.Add(waypoint0.transform);

@@ -9,8 +9,11 @@ using Esri.GameEngine.Geometry;
 public class TrailWanderer : MonoBehaviour
 {
     public string animalName;
+    public int animalScore;
+    public int timeScoreMult;
 
     public Camera playerSnapCam;
+    public RealtimeSunController sunController;
     public bool isVisible;
     [Header("Waypoints")]
     public List<Transform> trailPoints = new List<Transform>();
@@ -32,6 +35,7 @@ public class TrailWanderer : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         playerSnapCam = GameObject.FindWithTag("PlayerCamera").GetComponent<Camera>();
+        sunController = GameObject.FindWithTag("SunController").GetComponent<RealtimeSunController>();
         StartCoroutine(StartingUp());
     }
     private IEnumerator StartingUp()
@@ -63,6 +67,17 @@ public class TrailWanderer : MonoBehaviour
             return;
         
         MoveAlongTrail();
+
+        if(sunController.currentTime.Hour > 18 && sunController.currentTime.Hour < 6)
+        {
+            waitTimeAtPoint = 20;
+            timeScoreMult = 2;
+        }
+        else
+        {
+            waitTimeAtPoint = 10;
+            timeScoreMult = 1;
+        }
     }
 
     private void MoveAlongTrail()

@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 
 public class PlayerSnapCamController : MonoBehaviour
 {
+    [SerializeField] FirstPersonController FPSController;
     [SerializeField] RealtimeSunController sunController;
     [SerializeField] public List<GameObject> animals;
     [SerializeField] SnapshotCamera snapCam;
@@ -18,7 +19,8 @@ public class PlayerSnapCamController : MonoBehaviour
     [SerializeField] Canvas pauseMenu;
     float lastClick;
     float nextClick;
-    float distanceScore;
+    int movementScore;
+    int distanceScore;
 
     int maxSnaps = 10;
     int currentSnap = 0;
@@ -102,36 +104,11 @@ public class PlayerSnapCamController : MonoBehaviour
             {
                 if(Vector3.Distance(trailWanderer.transform.position, transform.position) < 100)
                 {
-                    if (trailWanderer.animalName == "chicken")
-                    {
-                        distanceScore = Vector3.Distance(trailWanderer.transform.position, transform.position) / 10;
-                        if (distanceScore < 0) distanceScore = 0;
-                        snapCam.AddScore(20 - (int)distanceScore + sunController.currentTime.Hour);
-                    }
-                    if (trailWanderer.animalName == "deer")
-                    {
-                        distanceScore = Vector3.Distance(trailWanderer.transform.position, transform.position) / 10;
-                        if (distanceScore < 0) distanceScore = 0;
-                        snapCam.AddScore(40 - (int)distanceScore + sunController.currentTime.Hour);
-                    }
-                    if (trailWanderer.animalName == "dog")
-                    {
-                        distanceScore = Vector3.Distance(trailWanderer.transform.position, transform.position) / 10;
-                        if (distanceScore < 0) distanceScore = 0;
-                        snapCam.AddScore(10 - (int)distanceScore + sunController.currentTime.Hour);
-                    }
-                    if (trailWanderer.animalName == "horse")
-                    {
-                        distanceScore = Vector3.Distance(trailWanderer.transform.position, transform.position) / 10;
-                        if (distanceScore < 0) distanceScore = 0;
-                        snapCam.AddScore(20 - (int)distanceScore + sunController.currentTime.Hour);
-                    }
-                    if (trailWanderer.animalName == "cat")
-                    {
-                        distanceScore = Vector3.Distance(trailWanderer.transform.position, transform.position) / 10;
-                        if (distanceScore < 0) distanceScore = 0;
-                        snapCam.AddScore(60 - (int)distanceScore + sunController.currentTime.Hour);
-                    }
+                    if (FPSController.currentMoveSpeed > 0 || FPSController.currentRotationSpeed > 0) movementScore = -5;
+                    distanceScore = (int)(-1 * (Vector3.Distance(trailWanderer.transform.position, transform.position) / 10));
+                    if (distanceScore < 0) distanceScore = 0;
+
+                    snapCam.AddScore(trailWanderer.animalScore + movementScore + distanceScore + (sunController.currentTime.Hour * trailWanderer.timeScoreMult));
                 }
 
             }

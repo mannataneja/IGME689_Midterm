@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerCamera
   - animal
+  - SunController
   layers:
   - Default
   - TransparentFX

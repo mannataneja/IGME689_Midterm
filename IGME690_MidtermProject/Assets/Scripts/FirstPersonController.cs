@@ -18,6 +18,11 @@ public class FirstPersonController : MonoBehaviour
     private Vector3 velocity;
     private float xRotation = 0f;
 
+    public float currentMoveSpeed = 0f;        
+    public float currentRotationSpeed = 0f;
+
+    private Vector3 previousPosition;
+    private float previousYaw;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -32,6 +37,7 @@ public class FirstPersonController : MonoBehaviour
     {
         HandleMovement();
         HandleLook();
+        MeasureSpeeds();
     }
 
     void HandleMovement()
@@ -66,5 +72,28 @@ public class FirstPersonController : MonoBehaviour
 
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
+    }
+    void MeasureSpeeds()
+    {
+        Vector3 currentPosition = transform.position;
+
+        // Ignore Y for horizontal movement speed
+        Vector3 flatCurrent = new Vector3(currentPosition.x, 0f, currentPosition.z);
+        Vector3 flatPrevious = new Vector3(previousPosition.x, 0f, previousPosition.z);
+        float distance = Vector3.Distance(flatCurrent, flatPrevious);
+        currentMoveSpeed = distance / Time.deltaTime;
+
+        // Small dead-zone for jitter at rest
+        if (currentMoveSpeed < 0.05f)
+            currentMoveSpeed = 0f;
+
+        previousPosition = currentPosition;
+
+        // --- ROTATION SPEED ---
+        float currentYaw = transform.eulerAngles.y;
+        float deltaYaw = Mathf.DeltaAngle(previousYaw, currentYaw);
+        currentRotationSpeed = Mathf.Abs(deltaYaw) / Time.deltaTime;
+
+        previousYaw = currentYaw;
     }
 }
