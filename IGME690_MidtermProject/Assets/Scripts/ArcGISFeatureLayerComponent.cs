@@ -49,6 +49,10 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
     private List<FeatureQueryData> Features = new List<FeatureQueryData>();
     private FeatureData featureInfo;
     [SerializeField] private GameObject[] featurePrefabs;
+    [SerializeField] private GameObject waypointPrefab;
+    private GameObject waypoint0;
+    private GameObject waypoint1;
+    private GameObject waypoint2;
     private JToken[] jFeatures;
     private float spawnHeight = 0;
 
@@ -105,11 +109,12 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
         // Deserialize the JSON response from the query.
         var jObject = JObject.Parse(response);
         jFeatures = jObject.SelectToken("features").ToArray();
-        //CreateFeatures();
+        CreateFeatures();
     }
 
-    /*private void CreateFeatures()
+    private void CreateFeatures()
     {
+        int c = 0;
         foreach (var feature in jFeatures)
         {
             // Get coordinates in the Feature Service
@@ -117,12 +122,13 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
 
             foreach (var coordinate in coordinates)
             {
+                c++;
                 var currentFeature = new FeatureQueryData();
                 coordinates.ToArray();
                 currentFeature.Geometry.Latitude = Convert.ToDouble(coordinate[1]);
                 currentFeature.Geometry.Longitude = Convert.ToDouble(coordinate[0]);
-*//*                Debug.Log("Longitude: " + currentFeature.Geometry.Longitude);
-                Debug.Log("Latitude: " + currentFeature.Geometry.Latitude);*//*
+/*                Debug.Log("Longitude: " + currentFeature.Geometry.Longitude);
+                Debug.Log("Latitude: " + currentFeature.Geometry.Latitude);*/
 
                 // Create new ArcGIS Point and pass the Feature Lat and Long to it
                 var position = new ArcGISPoint(currentFeature.Geometry.Longitude, currentFeature.Geometry.Latitude, spawnHeight, new ArcGISSpatialReference(4326));
@@ -136,14 +142,40 @@ public class ArcGISFeatureLayerComponent : MonoBehaviour
                 // Add converted position to the splines container
                 splineContainer.Splines[0].Add(bezierKnot);
 
-                int random = UnityEngine.Random.Range(0, featurePrefabs.Length);
-                GameObject newPoint = Instantiate(featurePrefabs[random], transform);
-                newPoint.GetComponent<ArcGISLocationComponent>().Position = position;
-                newPoint.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
+                if (c % 7 == 0)
+                {
+                    waypoint0 = Instantiate(waypointPrefab, transform);
+                    waypoint0.GetComponent<ArcGISLocationComponent>().Position = position;
+                    waypoint0.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
+                }
+                if (c % 8 == 0)
+                {
+                    waypoint1 = Instantiate(waypointPrefab, transform);
+                    waypoint1.GetComponent<ArcGISLocationComponent>().Position = position;
+                    waypoint1.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
+                }
+                if (c % 9 == 0)
+                {
+                    waypoint2 = Instantiate(waypointPrefab, transform);
+                    waypoint2.GetComponent<ArcGISLocationComponent>().Position = position;
+                    waypoint2.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
+                }
+                if(c % 10 == 0)
+                {
+                    int random = UnityEngine.Random.Range(0, featurePrefabs.Length);
+                    GameObject newPoint = Instantiate(featurePrefabs[random], transform);
+                    newPoint.GetComponent<ArcGISLocationComponent>().Position = position;
+                    newPoint.GetComponent<ArcGISLocationComponent>().Rotation = new ArcGISRotation(0, 90, 0);
+                    newPoint.GetComponent<TrailWanderer>().trailPoints.Add(waypoint0.transform);
+                    newPoint.GetComponent<TrailWanderer>().trailPoints.Add(waypoint1.transform);
+                    newPoint.GetComponent<TrailWanderer>().trailPoints.Add(waypoint2.transform);
+
+                }
+
             }
         }
-*//*        wallBuilder.SetActive(true);
+/*        wallBuilder.SetActive(true);
         wall = wallBuilder.GetComponent<Wall>();
-        wall.Build();*//*
-    }*/
+        wall.Build();*/
+    }
 }

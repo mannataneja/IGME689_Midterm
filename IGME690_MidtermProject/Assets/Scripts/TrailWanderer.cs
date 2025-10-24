@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Esri.ArcGISMapsSDK.Components;
+using Esri.ArcGISMapsSDK.Utils.GeoCoord;
+using Esri.GameEngine.Geometry;
 
 [RequireComponent(typeof(CharacterController))]
 public class TrailWanderer : MonoBehaviour
@@ -26,6 +29,15 @@ public class TrailWanderer : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        playerSnapCam = GameObject.FindWithTag("PlayerCamera").GetComponent<Camera>();
+        StartCoroutine(StartingUp());
+    }
+    private IEnumerator StartingUp()
+    {
+        isWaiting = true;
+        yield return new WaitForSeconds(1);
+        isWaiting = false;
+        GetComponent<ArcGISLocationComponent>().enabled = false;
     }
 
     private void Update()
@@ -35,7 +47,7 @@ public class TrailWanderer : MonoBehaviour
 
         if (trailPoints.Count == 0 || isWaiting)
             return;
-
+        
         MoveAlongTrail();
     }
 
@@ -59,6 +71,7 @@ public class TrailWanderer : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
         }
+        transform.position = new Vector3(transform.position.x, -2.5f, transform.position.z);
     }
 
     private IEnumerator WaitAtWaypoint()
