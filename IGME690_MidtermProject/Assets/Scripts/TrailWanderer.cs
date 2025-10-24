@@ -9,7 +9,7 @@ using Esri.GameEngine.Geometry;
 public class TrailWanderer : MonoBehaviour
 {
     public Camera playerSnapCam;
-    public bool visible;
+    public bool isVisible;
     [Header("Waypoints")]
     public List<Transform> trailPoints = new List<Transform>();
 
@@ -43,7 +43,7 @@ public class TrailWanderer : MonoBehaviour
     private void Update()
     {
         Vector3 targetPosition = playerSnapCam.WorldToViewportPoint(gameObject.transform.position);
-        visible = targetPosition.z > 0 && targetPosition.x > 0 && targetPosition.x < 1 && targetPosition.y > 0 && targetPosition.y < 1;
+        isVisible = targetPosition.z > 0 && targetPosition.x > 0 && targetPosition.x < 1 && targetPosition.y > 0 && targetPosition.y < 1;
 
         if (trailPoints.Count == 0 || isWaiting)
             return;

@@ -12,7 +12,7 @@ public class RealtimeSunController : MonoBehaviour
 	[SerializeField] private bool useSimulatedTime;
 	[SerializeField] private float startHour;
 	[SerializeField] private float timeMultiplier;
-	private DateTime currentTime;
+	public DateTime currentTime;
 
 	private float timePercent;
 	private float earthAxialTiltRadians = 23.5f * Mathf.Deg2Rad;
@@ -72,7 +72,8 @@ public class RealtimeSunController : MonoBehaviour
 			// Set the rotation of the directional light to match the sun's position in the sky
 			transform.rotation = Quaternion.Euler(elevation * Mathf.Rad2Deg, -azimuth * Mathf.Rad2Deg, 0f);
 
-			timeText.text = DateTime.Now.ToString("hh:mm");
+			currentTime = DateTime.Now;
+			timeText.text = currentTime.ToString("hh:mm");
 		}
 
 	}
