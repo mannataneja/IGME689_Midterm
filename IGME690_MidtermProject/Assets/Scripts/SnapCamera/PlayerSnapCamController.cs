@@ -142,6 +142,10 @@ public class PlayerSnapCamController : MonoBehaviour
     {
         snapCam.DeleteSnap(index);
         currentSnap--;
+        if(currentSnap < 0)
+        {
+            currentSnap = 0;
+        }
         snapCounter.text = "Photos Taken : " + currentSnap + "/" + maxSnaps;
     }
     public void DisplayGallery()
