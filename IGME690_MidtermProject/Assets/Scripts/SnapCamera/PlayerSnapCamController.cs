@@ -111,7 +111,7 @@ public class PlayerSnapCamController : MonoBehaviour
                     if (distanceScore < 0) distanceScore = 0;
                     if (weatherController.CurrentState == WeatherController.WeatherState.Rain) weatherScore = 5; else weatherScore = 0;
 
-                    snapCam.AddScore(trailWanderer.animalScore + movementScore + distanceScore + (sunController.currentTime.Hour * trailWanderer.timeScoreMult));
+                    snapCam.AddScore(trailWanderer.animalScore + movementScore + distanceScore + (sunController.currentTime.Hour * trailWanderer.timeScoreMult) + weatherScore);
                 }
 
             }
